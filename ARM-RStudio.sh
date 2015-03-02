@@ -7,7 +7,8 @@ sudo apt-get install -y r-base r-base-dev
 
 #Download RStudio source
 #Set RStudio version
-VERS=v0.98.982
+#VERS=v0.98.982
+VERS=v0.99.320
 cd
 wget https://github.com/rstudio/rstudio/tarball/$VERS
 mkdir rstudio-$VERS && tar xvf $VERS -C rstudio-$VERS --strip-components 1
