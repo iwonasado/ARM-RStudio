@@ -37,6 +37,9 @@ cd ~/rstudio-$VERS/dependencies/common/
 ./install-boost
 ./install-packages
 
+cd ~/rstudio-$VERS/dependencies/linux/
+./install-dependencies-debian
+
 #Get Closure Compiler and replace compiler.jar
 cd
 wget http://dl.google.com/closure-compiler/compiler-latest.zip
