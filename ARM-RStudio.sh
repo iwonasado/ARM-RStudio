@@ -50,7 +50,8 @@ sudo mv compiler.jar ~/rstudio-$VERS/src/gwt/tools/compiler/compiler.jar
 #Configure cmake and build RStudio
 cd ~/rstudio-$VERS/
 mkdir build
-sudo cmake -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
+cd ~/rstudio-$VERS/build
+sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
 sudo make install
 
 #Clean the system of packages used for building
