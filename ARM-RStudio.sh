@@ -7,8 +7,8 @@ sudo apt-get install -y r-base r-base-dev
 
 #Download RStudio source
 #Set RStudio version
-#VERS=v0.98.982
-VERS=v0.99.320
+VERS=v0.98.982
+#VERS=v0.99.320
 cd
 wget https://github.com/rstudio/rstudio/tarball/$VERS
 mkdir rstudio-$VERS && tar xvf $VERS -C rstudio-$VERS --strip-components 1
@@ -22,10 +22,15 @@ sudo apt-get install -y libapparmor1 apparmor-utils libboost-all-dev libpango1.0
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get install -y cabal-install
 sudo apt-get install -y ghc
-sudo apt-get install -y qt-sdk
 sudo apt-get install -y pandoc
 
-sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
+sudo apt-get install -y qt-sdk
+#sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
+
+# Q_WS_X11 not set if qt5 is installed
+sudo apt-get remove qtbase5-dev
+# Make sure libqt4-dev is installed
+sudo apt-get install qt4-dev
 
 #Run common environment preparation scripts
 cd rstudio-$VERS/dependencies/common/
