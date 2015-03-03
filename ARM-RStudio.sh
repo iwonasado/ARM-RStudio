@@ -25,6 +25,8 @@ sudo apt-get install -y ghc
 sudo apt-get install -y qt-sdk
 sudo apt-get install -y pandoc
 
+apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
+
 #Run common environment preparation scripts
 cd rstudio-$VERS/dependencies/common/
 mkdir ~/rstudio-$VERS/dependencies/common/pandoc
