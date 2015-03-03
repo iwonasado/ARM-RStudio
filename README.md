@@ -8,6 +8,7 @@ Download the zip file containing ARM-RStudio and extract its contents. Launch a 
 `sudo ./ARM-RStudio.sh [VERS] [CLEAN]`
 
 `VERS: Set vx.xx.xxx for RStudio version [default: v0.98.982]`
+
 `CLEAN: Set 1 to clean packages used for building [default: 1]`
 
 You may need to change the permissions to allow the script to execute, in which case enter `sudo chmod +x ARM-RStudio.sh` before launching the script.
