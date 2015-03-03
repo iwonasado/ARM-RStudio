@@ -1,18 +1,43 @@
 #!/bin/bash
 #This script installs R and builds RStudio Desktop for ARM Chromebooks running Ubuntu 14.04
 
+# usage info
+usage()
+{
+	echo -e "\nUsage: $(basename $0) [VERS] [clean]\n"
+	echo -e "VERS: Set vx.xx.xxx for RStudio version [default: v0.98.982]"
+	echo -e "clean: Set 1 to clean packages used for building [default: 1]\n"
+}
+
+#Set RStudio version
+VERS=v0.98.982
+#VERS=v0.99.322
+cleanPackages=1
+if [ $# -gt 0 ]; then
+  if [ $# -eq 2 ]; then
+    VERS=$1
+    cleanPackages=$2
+  else
+    usage
+  fi
+fi
+
 #Install R
 sudo apt-get update
 sudo apt-get install -y r-base r-base-dev
 
 #Download RStudio source
-#Set RStudio version
-VERS=v0.98.982
-#VERS=v0.99.320
 cd
 wget https://github.com/rstudio/rstudio/tarball/$VERS
-mkdir rstudio-$VERS && tar xvf $VERS -C rstudio-$VERS --strip-components 1
-rm $VERS
+
+# check if source code has been successfuly downloaded
+if [ -f $VERS ]; then
+  mkdir rstudio-$VERS && tar xvf $VERS -C rstudio-$VERS --strip-components 1
+  rm $VERS
+else
+  echo -e "invalid RStudio version of download failed!\n"
+  usage
+fi
 
 #Install RStudio build dependencies
 sudo apt-get install -y git
@@ -25,12 +50,20 @@ sudo apt-get install -y ghc
 sudo apt-get install -y pandoc
 
 sudo apt-get install -y qt-sdk
-#sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
+sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
-# Q_WS_X11 not set if qt5 is installed
-sudo apt-get remove qtbase5-dev
-# Make sure libqt4-dev is installed
-sudo apt-get install qt4-dev
+if [$VERS = "v0.98.982"]; then
+  ## For old versions with QT4
+  # Q_WS_X11 not set if qt5 is installed
+  sudo apt-get remove qtbase5-dev
+  # Make sure libqt4-dev is installed
+  sudo apt-get install qt4-dev
+else
+  ## For new versions with QT5
+  # Patch CMakeLists.txt
+  sed -i 's|get_filename_component|#get_filename_component|g' WPS/arch/configure.defaults
+  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' WPS/arch/configure.defaults
+fi
 
 #Run common environment preparation scripts
 cd rstudio-$VERS/dependencies/common/
@@ -60,7 +93,9 @@ sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
 sudo make install
 
 #Clean the system of packages used for building
-cd
-sudo apt-get autoremove -y cabal-install ghc openjdk-7-jdk pandoc libboost-all-dev
-sudo rm -r -f rstudio-$VERS
-sudo apt-get autoremove -y
+if [$cleanPackages -eq 1]; then
+  cd
+  sudo apt-get autoremove -y cabal-install ghc openjdk-7-jdk pandoc libboost-all-dev
+  sudo rm -r -f rstudio-$VERS
+  sudo apt-get autoremove -y
+fi
