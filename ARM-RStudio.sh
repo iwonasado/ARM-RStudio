@@ -35,7 +35,7 @@ if [ -f $VERS ]; then
   mkdir rstudio-$VERS && tar xvf $VERS -C rstudio-$VERS --strip-components 1
   rm $VERS
 else
-  echo -e "invalid RStudio version of download failed!\n"
+  echo -e "invalid RStudio version or download failed!\n"
   usage
 fi
 
