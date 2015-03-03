@@ -1,6 +1,6 @@
 ARM-RStudio
 ===========
-Compile RStudio Desktop for Ubuntu on ARM Samsung Chromebook
+Compile RStudio Desktop on Ubuntu/Debian for ARM Devices
 
 Usage
 -------
@@ -9,7 +9,7 @@ Download the zip file containing ARM-RStudio and extract its contents. Launch a 
 
   What is this?
 -----------------
-This script installs R and compiles RStudio Desktop for ARM architecture. It was specifically written for the Samsung Chromebook running Ubuntu using Crouton but <i>should</i> work for other ARM hardware on Ubuntu. The code can also serve as a guide if you running a different Linux distribution on ARM hardware, but the package versions could present issues. Testers wanted!
+This script installs R and compiles RStudio Desktop for ARM architecture. It was specifically written for the Samsung Chromebook running Ubuntu/Debian using Crouton but <i>should</i> work for other ARM hardware on Ubuntu/Debian. The code can also serve as a guide if you running a different Linux distribution on ARM hardware, but the package versions could present issues. Testers wanted!
 
 What is R? RStudio? ARM? Ubuntu? Chromebook? Crouton?
 -----------------------------------------------------------------------------------------------------
