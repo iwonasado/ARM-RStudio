@@ -4,7 +4,13 @@ Compile RStudio Desktop on Ubuntu/Debian for ARM Devices
 
 Usage
 -------
-Download the zip file containing ARM-RStudio and extract its contents. Launch a terminal from inside this folder and run `sudo ./ARM-RStudio.sh`. You may need to change the permissions to allow the script to execute, in which case enter `sudo chmod +x ARM-RStudio.sh` before launching the script.
+Download the zip file containing ARM-RStudio and extract its contents. Launch a terminal from inside this folder and run
+`sudo ./ARM-RStudio.sh [VERS] [CLEAN]`
+
+`VERS: Set vx.xx.xxx for RStudio version [default: v0.98.982]`
+`CLEAN: Set 1 to clean packages used for building [default: 1]`
+
+You may need to change the permissions to allow the script to execute, in which case enter `sudo chmod +x ARM-RStudio.sh` before launching the script.
 
 
   What is this?
