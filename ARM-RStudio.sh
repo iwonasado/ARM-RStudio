@@ -37,8 +37,8 @@ cd ~/rstudio-$VERS/dependencies/common/
 ./install-boost
 ./install-packages
 
-cd ~/rstudio-$VERS/dependencies/linux/
-./install-dependencies-debian
+#cd ~/rstudio-$VERS/dependencies/linux/
+#./install-dependencies-debian
 
 #Get Closure Compiler and replace compiler.jar
 cd
