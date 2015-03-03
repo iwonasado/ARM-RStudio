@@ -4,19 +4,19 @@
 # usage info
 usage()
 {
-	echo -e "\nUsage: $(basename $0) [VERS] [clean]\n"
+	echo -e "\nUsage: $(basename $0) [VERS] [CLEAN]\n"
 	echo -e "VERS: Set vx.xx.xxx for RStudio version [default: v0.98.982]"
-	echo -e "clean: Set 1 to clean packages used for building [default: 1]\n"
+	echo -e "CLEAN: Set 1 to clean packages used for building [default: 1]\n"
 }
 
 #Set RStudio version
 VERS=v0.98.982
 #VERS=v0.99.322
-cleanPackages=1
+CLEAN=1
 if [ $# -gt 0 ]; then
   if [ $# -eq 2 ]; then
     VERS=$1
-    cleanPackages=$2
+    CLEAN=$2
   else
     usage
   fi
@@ -93,7 +93,7 @@ sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
 sudo make install
 
 #Clean the system of packages used for building
-if [$cleanPackages -eq 1]; then
+if [CLEAN -eq 1]; then
   cd
   sudo apt-get autoremove -y cabal-install ghc openjdk-7-jdk pandoc libboost-all-dev
   sudo rm -r -f rstudio-$VERS
