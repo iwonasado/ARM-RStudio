@@ -11,6 +11,7 @@ usage()
 
 #Set RStudio version
 #VERS=v0.99.324
+#VERS=v0.98.1102
 VERS=v0.98.982
 CLEAN=1
 if [ $# -gt 0 ]; then
@@ -55,12 +56,12 @@ sudo apt-get install -y qtcreator qtcreator-dev
 sudo apt-get install -y qt-sdk qtbase5-dev qttools5-dev qttools5-dev-tools qttools5-private-dev
 sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
-if [$VERS -eq "v0.98.982"]; then
+if [ $(echo $VERS | cut -d'.' -f 2) -eq 98 ]; then
   ## old versions require QT4
   # Q_WS_X11 not set if qt5 is installed
   sudo apt-get remove qtbase5-dev
   # install libqt4-dev
-  sudo apt-get install qt4-dev
+  sudo apt-get install libqt4-dev libqt4-dev-bin qt4-dev-tools
 fi
 
 #Run common environment preparation scripts
@@ -87,7 +88,11 @@ sudo mv compiler.jar ~/rstudio-$VERS/src/gwt/tools/compiler/compiler.jar
 cd ~/rstudio-$VERS/
 mkdir build
 cd ~/rstudio-$VERS/build
-sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release -DQT_QMAKE_EXECUTABLE=$(which qmake)
+if [ $(echo $VERS | cut -d'.' -f 2) -eq 98 ]; then
+  sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
+else
+  sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release -DQT_QMAKE_EXECUTABLE=$(which qmake)
+fi
 sudo make install
 
 #Clean the system of packages used for building
