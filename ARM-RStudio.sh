@@ -49,7 +49,7 @@ sudo apt-get install -y cabal-install
 sudo apt-get install -y ghc
 sudo apt-get install -y pandoc
 
-sudo apt-get install -y qt-sdk qtbase5-dev
+sudo apt-get install -y qtcreator qt-sdk qtbase5-dev
 sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
 if [$VERS -eq "v0.98.982"]; then
