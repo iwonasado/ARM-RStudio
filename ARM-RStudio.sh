@@ -10,8 +10,8 @@ usage()
 }
 
 #Set RStudio version
+#VERS=v0.99.323
 VERS=v0.98.982
-#VERS=v0.99.322
 CLEAN=1
 if [ $# -gt 0 ]; then
   if [ $# -eq 2 ]; then
@@ -49,10 +49,10 @@ sudo apt-get install -y cabal-install
 sudo apt-get install -y ghc
 sudo apt-get install -y pandoc
 
-sudo apt-get install -y qt-sdk
+sudo apt-get install -y qt-sdk qtbase5-dev
 sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
-if [$VERS = "v0.98.982"]; then
+if [$VERS -eq "v0.98.982"]; then
   ## For old versions with QT4
   # Q_WS_X11 not set if qt5 is installed
   sudo apt-get remove qtbase5-dev
