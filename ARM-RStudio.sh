@@ -10,7 +10,7 @@ usage()
 }
 
 #Set RStudio version
-#VERS=v0.99.323
+#VERS=v0.99.324
 VERS=v0.98.982
 CLEAN=1
 if [ $# -gt 0 ]; then
@@ -49,6 +49,8 @@ sudo apt-get install -y cabal-install
 sudo apt-get install -y ghc
 sudo apt-get install -y pandoc
 
+sudo apt-get install -y clang libclang-dev
+
 sudo apt-get install -y qtcreator qtcreator-dev
 sudo apt-get install -y qt-sdk qtbase5-dev qttools5-dev qttools5-dev-tools qttools5-private-dev
 sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
@@ -73,8 +75,11 @@ cd ~/rstudio-$VERS/dependencies/common/
 ./install-gwt
 ./install-dictionaries
 ./install-mathjax
-./install-boost
+#./install-boost
 ./install-packages
+if [ -f install-libclang ]; then
+  ./install-libclang
+fi
 
 #cd ~/rstudio-$VERS/dependencies/linux/
 #./install-dependencies-debian
