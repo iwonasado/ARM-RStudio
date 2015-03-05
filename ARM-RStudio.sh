@@ -61,8 +61,8 @@ if [$VERS -eq "v0.98.982"]; then
 else
   ## For new versions with QT5
   # Patch CMakeLists.txt
-  sed -i 's|get_filename_component|#get_filename_component|g' WPS/arch/configure.defaults
-  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' WPS/arch/configure.defaults
+  sed -i 's|get_filename_component|#get_filename_component|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
+  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
 fi
 
 #Run common environment preparation scripts
