@@ -56,16 +56,11 @@ sudo apt-get install -y qt-sdk qtbase5-dev qttools5-dev qttools5-dev-tools qttoo
 sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
 if [$VERS -eq "v0.98.982"]; then
-  ## For old versions with QT4
+  ## old versions require QT4
   # Q_WS_X11 not set if qt5 is installed
   sudo apt-get remove qtbase5-dev
-  # Make sure libqt4-dev is installed
+  # install libqt4-dev
   sudo apt-get install qt4-dev
-#else
-#  ## For new versions with QT5
-#  # Patch CMakeLists.txt
-#  sed -i 's|get_filename_component|#get_filename_component|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
-#  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
 fi
 
 #Run common environment preparation scripts
@@ -80,9 +75,6 @@ cd ~/rstudio-$VERS/dependencies/common/
 if [ -f install-libclang ]; then
   ./install-libclang
 fi
-
-#cd ~/rstudio-$VERS/dependencies/linux/
-#./install-dependencies-debian
 
 #Get Closure Compiler and replace compiler.jar
 cd
