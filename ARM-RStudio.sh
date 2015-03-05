@@ -61,11 +61,11 @@ if [$VERS -eq "v0.98.982"]; then
   sudo apt-get remove qtbase5-dev
   # Make sure libqt4-dev is installed
   sudo apt-get install qt4-dev
-else
-  ## For new versions with QT5
-  # Patch CMakeLists.txt
-  sed -i 's|get_filename_component|#get_filename_component|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
-  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
+#else
+#  ## For new versions with QT5
+#  # Patch CMakeLists.txt
+#  sed -i 's|get_filename_component|#get_filename_component|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
+#  sed -i 's|set(CMAKE_PREFIX_PATH "${QT_BIN_DIR}//..//lib//cmake")|set(CMAKE_PREFIX_PATH "/usr")|g' ~/rstudio-$VERS/src/cpp/desktop/CMakeLists.txt
 fi
 
 #Run common environment preparation scripts
@@ -95,7 +95,7 @@ sudo mv compiler.jar ~/rstudio-$VERS/src/gwt/tools/compiler/compiler.jar
 cd ~/rstudio-$VERS/
 mkdir build
 cd ~/rstudio-$VERS/build
-sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release
+sudo cmake .. -DRSTUDIO_TARGET=Desktop -DCMAKE_BUILD_TYPE=Release -DQT_QMAKE_EXECUTABLE=$(which qmake)
 sudo make install
 
 #Clean the system of packages used for building
