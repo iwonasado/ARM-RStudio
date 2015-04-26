@@ -54,7 +54,7 @@ sudo apt-get install -y clang libclang-dev
 
 sudo apt-get install -y qtcreator qtcreator-dev
 sudo apt-get install -y qt-sdk qtbase5-dev qttools5-dev qttools5-dev-tools qttools5-private-dev
-sudo apt-get install libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
+sudo apt-get install -y libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev libqt5svg5-dev libqt5xmlpatterns5-dev
 
 if [ $(echo $VERS | cut -d'.' -f 2) -eq 98 ]; then
   ## old versions require QT4
