@@ -45,7 +45,7 @@ sudo apt-get install -y git
 sudo apt-get install -y build-essential pkg-config fakeroot cmake ant libjpeg62
 sudo apt-get install -y uuid-dev libssl-dev libbz2-dev zlib1g-dev libpam-dev
 sudo apt-get install -y libapparmor1 apparmor-utils libboost-all-dev libpango1.0-dev
-sudo apt-get install -y openjdk-7-jdk
+sudo apt-get install -y openjdk-8-jdk
 sudo apt-get install -y cabal-install
 sudo apt-get install -y ghc
 sudo apt-get install -y pandoc
